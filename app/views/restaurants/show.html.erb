@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <!-- Titre du restaurant -->
+  <h1 class="display-4 mb-4"><%= @restaurant.name %></h1>
+
+  <!-- Section des détails -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h2 class="h4 mb-0">Details</h2>
+    </div>
+    <div class="card-body">
+      <ul class="list-unstyled">
+        <li class="mb-2">
+          <strong>Address:</strong> <%= @restaurant.address %>
+        </li>
+        <li class="mb-2">
+          <strong>Category:</strong> <%= @restaurant.category %>
+        </li>
+        <li class="mb-2">
+          <strong>Phone Number:</strong> <%= @restaurant.phone_number %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<article class="mb-4">
+  <% @reviews.each do |review| %>
+    <div class="review mb-3 p-3 border rounded shadow-sm">
+      <div class="d-flex align-items-center mb-2">
+        <!-- Étoiles -->
+        <% review.rating.times do %>
+          <span class="text-warning">&#9733;</span> <!-- Unicode pour étoile pleine -->
+        <% end %>
+        <% (5 - review.rating).times do %>
+          <span class="text-muted">&#9734;</span> <!-- Unicode pour étoile vide -->
+        <% end %>
+      </div>
+      <!-- Contenu de la critique -->
+      <p class="mb-0"><%= review.content %></p>
+    </div>
+  <% end %>
+</article>
+
+<%= link_to 'Add a commentary', new_restaurant_review_path(restaurant_id: @restaurant.id), class: 'btn btn-primary' %>

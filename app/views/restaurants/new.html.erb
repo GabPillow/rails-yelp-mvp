@@ -1,0 +1,13 @@
+<h1>New restaurant</h1>
+
+<%= simple_form_for @restaurant do |form| %>
+  <%= form.input :name, label: 'Name', input_html: { class: 'form-control' } %>
+
+  <%= form.input :address, label: 'Address', input_html: { class: 'form-control' } %>
+
+  <%= form.input :phone_number, label: 'Phone Number', input_html: { class: 'form-control' } %>
+
+  <%= form.input :category, collection: Restaurant::CATEGORIES, label: 'Category', include_blank: false, input_html: { class: 'form-control' } %>
+
+  <%= form.button :submit, 'Add Restaurant', class: 'btn btn-primary' %>
+<% end %>
